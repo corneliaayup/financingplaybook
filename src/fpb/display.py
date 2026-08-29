@@ -45,7 +45,7 @@ def scheme_frame(results: list[SchemeResult], weights: dict) -> pd.DataFrame:
     for r in results:
         rows.append(
             {
-                "Rank": r.rank if r.rank else "",
+                "Rank": r.rank if r.rank else pd.NA,
                 "Scheme": f"{r.scheme_id}. {r.name}",
                 "Status": r.status,
                 "Fit": r.total,
@@ -53,6 +53,8 @@ def scheme_frame(results: list[SchemeResult], weights: dict) -> pd.DataFrame:
                 "Tie": r.tie_with or "",
             }
         )
-    return pd.DataFrame(
+    df = pd.DataFrame(
         rows, columns=["Rank", "Scheme", "Status", "Fit", "Primary", "Tie"]
     )
+    df["Rank"] = df["Rank"].astype("Int64")
+    return df
