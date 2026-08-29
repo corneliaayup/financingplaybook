@@ -12,3 +12,6 @@ economic_readiness:
 overall_fit:
   weights: {primary_scheme_fit: 0.4, economic_readiness: 0.25,
             financing_need_index: 0.2, readiness_context: 0.15}
+market_access:
+  scale: {none: 0, low: 33, medium: 66, high: 100}
+  slugs: [fs_green_loan, fs_lease_rent, fs_baas, fs_project_finance, fs_blended_finance]
