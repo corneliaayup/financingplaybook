@@ -915,7 +915,7 @@ def eval_fit(rule: dict, values: dict, bands: dict, scheme: dict) -> tuple[float
 
     if prim == "support_fit":
         gc = arg["gap_closer"]
-        if scheme.get("closes_financing_gap"):
+        if scheme.get("support_gap_closer"):
             v = values.get(gc["metric"])
             if v is None:
                 return None, f"{gc['metric']} unavailable"
