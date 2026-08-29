@@ -18,7 +18,7 @@ config/*.yaml      versioned field definitions, weights, bands, and scheme rules
 src/fpb/           the scoring engine (pure Python) + Streamlit dashboard (app.py)
 tests/             pytest suite, incl. golden-value tests from the reference workbooks
 docs/superpowers/  design spec and implementation plan
-resouce/           reference Excel workbooks (not tracked)
+resouce/           reference Excel workbooks (questionnaire form + dashboards)
 ```
 
 ## Prerequisites
