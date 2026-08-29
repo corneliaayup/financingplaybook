@@ -2,10 +2,11 @@
 name = "financing-playbook"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["pyyaml>=6"]
+dependencies = ["pyyaml>=6", "openpyxl>=3.1"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+ui = ["streamlit>=1.36", "pandas>=2"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
