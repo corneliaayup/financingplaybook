@@ -1,0 +1,28 @@
+config_version: "2026-01"
+bands: {low: [0, 33], medium: [34, 66], high: [67, 100]}
+financing_need:
+  slugs: [fn_external_need, fn_cashflow_constraint, fn_payment_preference, fn_support_requirement]
+  weights: [0.25, 0.25, 0.25, 0.25]
+risk_profile:
+  ownership_slug: rp_ownership
+  tolerance_slugs: [rp_technology, rp_battery, rp_residual, rp_maintenance, rp_downtime]
+  weights: [0.5, 0.5]
+economic_readiness:
+  weights: {tco_competitiveness: 0.5, investment_burden: 0.25, market_access: 0.25}
+overall_fit:
+  weights: {primary_scheme_fit: 0.4, economic_readiness: 0.25,
+            financing_need_index: 0.2, readiness_context: 0.15}
+market_access:
+  scale: {none: 0, low: 33, medium: 66, high: 100}
+  slugs: [fs_green_loan, fs_lease_rent, fs_baas, fs_project_finance, fs_blended_finance]
+tco:
+  annual_km_slug: tco_annual_km
+  years_slug: tco_years
+  diesel_prefix: tco_diesel_
+  ev_prefix: tco_ev_
+  fields: [capex, subsidy, energy_idr_km, maintenance_idr_m_yr, insurance_idr_m_yr,
+           infra_idr_m, battery_idr_m, residual_idr_m, financing_idr_m]
+cold_chain:
+  capex_slug: cc_capex_idr_m
+  energy_slug: cc_energy_idr_m_yr
+  apply_to: [ev, diesel]

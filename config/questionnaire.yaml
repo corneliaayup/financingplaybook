@@ -1,0 +1,16 @@
+spec_version: "2026-01"
+sections:
+  - id: financing_need
+    fields:
+      - {slug: fn_external_need, type: likert_5, required: true, scoring_role: financing_need}
+      - {slug: fn_cashflow_constraint, type: likert_5, required: true, scoring_role: financing_need}
+      - {slug: fn_payment_preference, type: likert_5, required: true, scoring_role: financing_need}
+      - {slug: fn_support_requirement, type: likert_5, required: true, scoring_role: financing_need}
+  - id: risk_profile
+    fields:
+      - {slug: rp_ownership, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_technology, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_battery, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_residual, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_maintenance, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_downtime, type: likert_5, required: true, scoring_role: risk_profile}

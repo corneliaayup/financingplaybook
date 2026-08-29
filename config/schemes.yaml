@@ -1,0 +1,166 @@
+weights: {need: 0.20, risk: 0.20, tco: 0.20, operational: 0.15, payment: 0.10, support: 0.15}
+
+schemes:
+  - id: "1"
+    name: "Conventional Ownership"
+    library_priority: 1
+    status: active
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: false
+    fit:
+      need: {target_band: {source: financing_need_index, target: LOW, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: LOW, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 80}
+      payment: {constant: 50}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "2"
+    name: "Conversion / Recycle"
+    library_priority: 2
+    status: active
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: false
+    fit:
+      need: {target_band: {source: financing_need_index, target: MEDIUM, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: MEDIUM, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 70}
+      payment: {constant: 60}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "3"
+    name: "Lease / Rent"
+    library_priority: 3
+    status: active
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: true
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: MEDIUM, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 85}
+      payment: {constant: 85}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "4"
+    name: "Lease + Charging"
+    library_priority: 4
+    status: active
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: true
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: HIGH, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 90}
+      payment: {constant: 90}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "4a/4b"
+    name: "Battery Risk Separation / BaaS"
+    library_priority: 5
+    status: active
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: true
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: HIGH, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 95}
+      payment: {constant: 95}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "5"
+    name: "Blended Finance / VGF"
+    library_priority: 6
+    status: active
+    closes_financing_gap: true
+    support_gap_closer: true
+    green_eligible: false
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: HIGH, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 95}
+      payment: {constant: 90}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "6"
+    name: "Performance-based / FaaS"
+    library_priority: 7
+    status: active
+    closes_financing_gap: true
+    support_gap_closer: false
+    green_eligible: true
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: HIGH, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 90}
+      payment: {constant: 95}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "7"
+    name: "Total Outsourcing"
+    library_priority: 8
+    status: active
+    closes_financing_gap: true
+    support_gap_closer: false
+    green_eligible: false
+    fit:
+      need: {target_band: {source: financing_need_index, target: HIGH, match: 100, mismatch: 70}}
+      risk: {target_band: {source: risk_profile_index, target: HIGH, match: 100, mismatch: 70}}
+      tco: {parity_or_gap: {match: 100, gap_group: 70, else: 40}}
+      operational: {constant: 85}
+      payment: {constant: 95}
+      support: {support_fit: {gap_closer: {metric: fn_support_requirement, ge: 4, then: 100, else: 70}, green_eligible: 80, default: 70}}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  # Draft entries exist only in the reference dashboard. The workbook library carries
+  # no rules for them, and fit dimensions are calibrated per scheme, so they cannot be
+  # scored. Excluded from primary-recommendation eligibility; visible in comparison
+  # with placeholder fits from the dashboard's Scheme_Comparison sheet.
+  - id: "gl"
+    name: "Green Loan (w/ Partial Guarantee)"
+    library_priority: 101
+    status: draft
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: true
+    fit:
+      need: {constant: 70}
+      risk: {constant: 65}
+      tco: {constant: 50}
+      operational: {constant: 70}
+      payment: {constant: 65}
+      support: {constant: 80}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
+
+  - id: "pf"
+    name: "Project Finance"
+    library_priority: 102
+    status: draft
+    closes_financing_gap: false
+    support_gap_closer: false
+    green_eligible: false
+    fit:
+      need: {constant: 50}
+      risk: {constant: 40}
+      tco: {constant: 55}
+      operational: {constant: 60}
+      payment: {constant: 40}
+      support: {constant: 60}
+      total: {weighted_sum: [need, risk, tco, operational, payment, support]}
