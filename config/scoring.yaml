@@ -15,3 +15,14 @@ overall_fit:
 market_access:
   scale: {none: 0, low: 33, medium: 66, high: 100}
   slugs: [fs_green_loan, fs_lease_rent, fs_baas, fs_project_finance, fs_blended_finance]
+tco:
+  annual_km_slug: tco_annual_km
+  years_slug: tco_years
+  diesel_prefix: tco_diesel_
+  ev_prefix: tco_ev_
+  fields: [capex, subsidy, energy_idr_km, maintenance_idr_m_yr, insurance_idr_m_yr,
+           infra_idr_m, battery_idr_m, residual_idr_m, financing_idr_m]
+cold_chain:
+  capex_slug: cc_capex_idr_m
+  energy_slug: cc_energy_idr_m_yr
+  apply_to: [ev, diesel]
