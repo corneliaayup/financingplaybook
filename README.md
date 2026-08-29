@@ -90,3 +90,24 @@ result = score(record, bundle, context={})
 - Everything stamped with `spec_version` and `config_version`
 
 Each metric reports one of three states — `computed`, `not_applicable`, or `insufficient_inputs` (naming the missing fields) — so results never silently default.
+
+## Run the web app
+
+Install the UI extras and launch Streamlit:
+
+```bash
+python -m pip install -e ".[ui]"
+streamlit run src/fpb/app.py
+```
+
+The dashboard opens on the bundled example. Use the sidebar to upload a respondent
+questionnaire Excel form (`Financing_Playbook_Respondent_Questionnaire.xlsx`) or a
+JSON record (same shape as `tests/fixtures/workbook_case.json`). Validation issues
+are shown; invalid values are excluded so the engine reports incomplete panels
+instead of silently defaulting.
+
+To run everything (tests plus the dashboard), install both extra groups:
+
+```bash
+python -m pip install -e ".[dev,ui]"
+```
