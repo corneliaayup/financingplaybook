@@ -2,13 +2,20 @@
 
 A single-analyst web tool that reproduces the Financing Playbook assessment: upload a questionnaire, validate it, score it against a deterministic, config-driven engine, and get a financing scheme recommendation.
 
-The repository is at an early stage. The current milestone (v0.1) is the **scoring engine**: a pure-Python package that turns a normalized questionnaire record (JSON) into a full assessment — financing need and risk-profile indices, TCO analysis, market access and economic readiness, and a ranked list of financing schemes with fit scores. Config lives in versioned YAML files so the questionnaire structure can change without touching Python. The upload UI (CSV/Excel ingestion), validation screens, and report export are later milestones.
+The current milestone (v0.1) is the **scoring engine plus a Streamlit dashboard**: a
+pure-Python engine turns a normalized questionnaire record into a full assessment —
+financing need and risk-profile indices, TCO analysis, market access and economic
+readiness, and a ranked list of financing schemes with fit scores — and a web app
+ingests the data (respondent Excel form or JSON), validates it, and renders the
+assessment detail view. Config lives in versioned YAML files so the questionnaire
+structure can change without touching Python. Report export and multi-case
+persistence are later milestones.
 
 ## Project layout
 
 ```
 config/*.yaml      versioned field definitions, weights, bands, and scheme rules
-src/fpb/           the scoring engine (pure Python, no I/O)
+src/fpb/           the scoring engine (pure Python) + Streamlit dashboard (app.py)
 tests/             pytest suite, incl. golden-value tests from the reference workbooks
 docs/superpowers/  design spec and implementation plan
 resouce/           reference Excel workbooks (not tracked)
@@ -19,19 +26,77 @@ resouce/           reference Excel workbooks (not tracked)
 - Python 3.11 or newer
 - Git (to clone the repository)
 
-## Setup
+Check your versions:
 
-Create and activate a virtual environment, then install the package in editable mode (with dev extras for testing):
+```bash
+python3 --version   # must be 3.11+
+git --version
+```
+
+## Local setup
+
+**Step 1 — clone the repository**
+
+```bash
+git clone git@github.com:corneliaayup/financingplaybook.git
+cd financingplaybook
+```
+
+**Step 2 — create and activate a virtual environment**
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[dev]"
 ```
 
-On Windows, activate with `.venv\Scripts\activate` instead.
+Activate it:
 
-The package has one runtime dependency (`PyYAML`); the dev extra adds `pytest`. The install pulls from PyPI, so a fresh environment needs network access.
+- macOS / Linux: `source .venv/bin/activate`
+- Windows (PowerShell): `.venv\Scripts\Activate.ps1`
+- Windows (cmd): `.venv\Scripts\activate.bat`
+
+You'll know it worked when your prompt is prefixed with `(.venv)`.
+
+**Step 3 — install the project**
+
+The project is installed in editable mode so code changes apply immediately. For
+everything (tests plus the web dashboard), install both extra groups:
+
+```bash
+python -m pip install -e ".[dev,ui]"
+```
+
+Or just one group if you only need part of it:
+
+- `python -m pip install -e ".[ui]"` — the dashboard only
+- `python -m pip install -e ".[dev]"` — tests only (engine + CLI work with this)
+
+This pulls dependencies from PyPI, so you need network access on first install.
+Runtime dependencies are `PyYAML` and `openpyxl`; the `ui` extra adds `streamlit`
+and `pandas`; the `dev` extra adds `pytest`.
+
+**Step 4 — verify the install**
+
+```bash
+python -c "import fpb; print('fpb ok')"
+python -m fpb.cli --help
+```
+
+No errors and a usage message means everything is installed.
+
+## Quick start
+
+The fastest way to see the tool working is to launch the dashboard (it opens on a
+bundled example case) and, separately, see the raw JSON the engine produces:
+
+```bash
+streamlit run src/fpb/app.py
+```
+
+Then in a second terminal:
+
+```bash
+python -m fpb.cli score --config config --record tests/fixtures/workbook_case.json
+```
 
 ## Run the tests
 
@@ -93,21 +158,38 @@ Each metric reports one of three states — `computed`, `not_applicable`, or `in
 
 ## Run the web app
 
-Install the UI extras and launch Streamlit:
+Launch the dashboard from the repository root (make sure your venv is active and
+you installed the `ui` extra):
 
 ```bash
-python -m pip install -e ".[ui]"
 streamlit run src/fpb/app.py
 ```
 
-The dashboard opens on the bundled example. Use the sidebar to upload a respondent
-questionnaire Excel form (`Financing_Playbook_Respondent_Questionnaire.xlsx`) or a
-JSON record (same shape as `tests/fixtures/workbook_case.json`). Validation issues
-are shown; invalid values are excluded so the engine reports incomplete panels
-instead of silently defaulting.
+Expected output:
 
-To run everything (tests plus the dashboard), install both extra groups:
+```text
+You can now view your Streamlit app in your browser.
+
+Local URL: http://localhost:8501
+```
+
+Open **http://localhost:8501** in your browser. The dashboard loads the bundled
+example (the golden `workbook_case` fixture). To run your own assessment, use the
+sidebar:
+
+- **Example** — the bundled sample case (default).
+- **Excel form** — upload the respondent questionnaire
+  (`Financing_Playbook_Respondent_Questionnaire.xlsx`); question numbers in column
+  A, answers in column D.
+- **JSON record** — upload a flat JSON file of field slugs to values (same shape as
+  `tests/fixtures/workbook_case.json`).
+
+Validation issues are shown in an amber banner and the offending values are
+excluded, so incomplete panels are reported as `insufficient_inputs` rather than
+silently defaulted. Stop the server with `Ctrl+C`.
+
+If port 8501 is already in use, pick another one:
 
 ```bash
-python -m pip install -e ".[dev,ui]"
+streamlit run src/fpb/app.py --server.port 8502
 ```
