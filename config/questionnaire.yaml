@@ -1,16 +1,107 @@
 spec_version: "2026-01"
 sections:
   - id: financing_need
+    title: "2. Financing Need"
     fields:
-      - {slug: fn_external_need, type: likert_5, required: true, scoring_role: financing_need}
-      - {slug: fn_cashflow_constraint, type: likert_5, required: true, scoring_role: financing_need}
-      - {slug: fn_payment_preference, type: likert_5, required: true, scoring_role: financing_need}
-      - {slug: fn_support_requirement, type: likert_5, required: true, scoring_role: financing_need}
+      - {slug: fn_external_need, type: likert_5, required: true, scoring_role: financing_need, label: "External Financing Need", section: "2. Financing Need", aliases: {form_column_d: "2.1"}}
+      - {slug: fn_cashflow_constraint, type: likert_5, required: true, scoring_role: financing_need, label: "Cash-flow / Budget Constraint", section: "2. Financing Need", aliases: {form_column_d: "2.2"}}
+      - {slug: fn_payment_preference, type: likert_5, required: true, scoring_role: financing_need, label: "Payment Preference", section: "2. Financing Need", aliases: {form_column_d: "2.3"}}
+      - {slug: fn_support_requirement, type: likert_5, required: true, scoring_role: financing_need, label: "External Support Requirement", section: "2. Financing Need", aliases: {form_column_d: "2.4"}}
   - id: risk_profile
+    title: "3. Risk Profile"
     fields:
-      - {slug: rp_ownership, type: likert_5, required: true, scoring_role: risk_profile}
-      - {slug: rp_technology, type: likert_5, required: true, scoring_role: risk_profile}
-      - {slug: rp_battery, type: likert_5, required: true, scoring_role: risk_profile}
-      - {slug: rp_residual, type: likert_5, required: true, scoring_role: risk_profile}
-      - {slug: rp_maintenance, type: likert_5, required: true, scoring_role: risk_profile}
-      - {slug: rp_downtime, type: likert_5, required: true, scoring_role: risk_profile}
+      - {slug: rp_ownership, type: likert_5, required: true, scoring_role: risk_profile, label: "Ownership Preference", section: "3. Risk Profile", aliases: {form_column_d: "3.1"}}
+      - {slug: rp_technology, type: likert_5, required: true, scoring_role: risk_profile, label: "Technology Risk Tolerance", section: "3. Risk Profile", aliases: {form_column_d: "3.2"}}
+      - {slug: rp_battery, type: likert_5, required: true, scoring_role: risk_profile, label: "Battery Risk Tolerance", section: "3. Risk Profile", aliases: {form_column_d: "3.3"}}
+      - {slug: rp_residual, type: likert_5, required: true, scoring_role: risk_profile, label: "Residual Value Risk Tolerance", section: "3. Risk Profile", aliases: {form_column_d: "3.4"}}
+      - {slug: rp_maintenance, type: likert_5, required: true, scoring_role: risk_profile, label: "Maintenance Risk Tolerance", section: "3. Risk Profile", aliases: {form_column_d: "3.5"}}
+      - {slug: rp_downtime, type: likert_5, required: true, scoring_role: risk_profile, label: "Performance / Downtime Risk Tolerance", section: "3. Risk Profile", aliases: {form_column_d: "3.6"}}
+  - id: tco
+    title: "4-6. TCO Inputs"
+    fields:
+      - {slug: tco_annual_km, type: numeric, required: true, label: "Annual Mileage", section: "4. Operation", unit: "km/year", min: 0, max: 1000000, aliases: {form_column_d: "4.4"}}
+      - {slug: tco_years, type: numeric, required: true, label: "Expected Vehicle Lifetime", section: "4. Operation", unit: "years", min: 1, max: 30, aliases: {form_column_d: "4.5"}}
+      - {slug: tco_diesel_capex, type: numeric, required: true, label: "Diesel Vehicle Purchase CAPEX", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "5.1"}}
+      - {slug: tco_diesel_subsidy, type: numeric, required: true, label: "Diesel Subsidy / Incentive", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "5.2"}}
+      - {slug: tco_diesel_energy_idr_km, type: numeric, required: true, label: "Diesel Energy / Fuel Cost per km", section: "5. TCO Diesel", unit: "Rp/km", min: 0, max: 100000, aliases: {form_column_d: "5.3"}}
+      - {slug: tco_diesel_maintenance_idr_m_yr, type: numeric, required: true, label: "Diesel Maintenance Cost per Year", section: "5. TCO Diesel", unit: "Rp million/yr", min: 0, max: 100000, aliases: {form_column_d: "5.4"}}
+      - {slug: tco_diesel_insurance_idr_m_yr, type: numeric, required: true, label: "Diesel Insurance + Tax per Year", section: "5. TCO Diesel", unit: "Rp million/yr", min: 0, max: 100000, aliases: {form_column_d: "5.5"}}
+      - {slug: tco_diesel_infra_idr_m, type: numeric, required: true, label: "Diesel Refuelling Infrastructure CAPEX", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "5.6"}}
+      - {slug: tco_diesel_battery_idr_m, type: numeric, required: true, label: "Diesel Battery Replacement Cost", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000}
+      - {slug: tco_diesel_residual_idr_m, type: numeric, required: true, label: "Diesel Residual Value at End of Life", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "5.7"}}
+      - {slug: tco_diesel_financing_idr_m, type: numeric, required: true, label: "Diesel Financing Cost", section: "5. TCO Diesel", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "5.8"}}
+      - {slug: tco_ev_capex, type: numeric, required: true, label: "EV Vehicle Purchase CAPEX", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.1"}}
+      - {slug: tco_ev_subsidy, type: numeric, required: true, label: "EV Subsidy / Incentive", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.2"}}
+      - {slug: tco_ev_energy_idr_km, type: numeric, required: true, label: "EV Energy Cost per km", section: "6. TCO EV", unit: "Rp/km", min: 0, max: 100000, aliases: {form_column_d: "6.3"}}
+      - {slug: tco_ev_maintenance_idr_m_yr, type: numeric, required: true, label: "EV Maintenance Cost per Year", section: "6. TCO EV", unit: "Rp million/yr", min: 0, max: 100000, aliases: {form_column_d: "6.4"}}
+      - {slug: tco_ev_insurance_idr_m_yr, type: numeric, required: true, label: "EV Insurance + Tax per Year", section: "6. TCO EV", unit: "Rp million/yr", min: 0, max: 100000, aliases: {form_column_d: "6.5"}}
+      - {slug: tco_ev_infra_idr_m, type: numeric, required: true, label: "Charging Infrastructure CAPEX", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.6"}}
+      - {slug: tco_ev_battery_idr_m, type: numeric, required: true, label: "Battery Replacement Cost", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.7"}}
+      - {slug: tco_ev_residual_idr_m, type: numeric, required: true, label: "EV Residual Value at End of Life", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.8"}}
+      - {slug: tco_ev_financing_idr_m, type: numeric, required: true, label: "EV Financing Cost", section: "6. TCO EV", unit: "Rp million", min: 0, max: 100000, aliases: {form_column_d: "6.9"}}
+  - id: market_access
+    title: "8. Financing Supply"
+    fields:
+      - {slug: fs_green_loan, type: choice, required: true, label: "Access to Bank / Green Loan", section: "8. Financing Supply", options: [Low, Medium, High, None], aliases: {form_column_d: "8.1"}}
+      - {slug: fs_lease_rent, type: choice, required: true, label: "Lease / Rent Availability", section: "8. Financing Supply", options: [Low, Medium, High, None], aliases: {form_column_d: "8.2"}}
+      - {slug: fs_baas, type: choice, required: true, label: "Battery-as-a-Service Availability", section: "8. Financing Supply", options: [Low, Medium, High, None], aliases: {form_column_d: "8.3"}}
+      - {slug: fs_project_finance, type: choice, required: true, label: "Project Finance Availability", section: "8. Financing Supply", options: [Low, Medium, High, None], aliases: {form_column_d: "8.4"}}
+      - {slug: fs_blended_finance, type: choice, required: true, label: "Blended Finance / VGF Availability", section: "8. Financing Supply", options: [Low, Medium, High, None], aliases: {form_column_d: "8.5"}}
+  - id: readiness_context
+    title: "1. Existing Readiness"
+    fields:
+      - {slug: consumer_readiness, type: numeric, required: false, context_source: true, label: "Consumer Readiness Score", section: "1. Existing Readiness", unit: "0-100", min: 0, max: 100, aliases: {form_column_d: "1.1"}}
+      - {slug: city_cri, type: numeric, required: false, context_source: true, label: "City / Ecosystem CRI", section: "1. Existing Readiness", unit: "0-100", min: 0, max: 100, aliases: {form_column_d: "1.3"}}
+  - id: form_metadata
+    title: "Other form fields (not scored)"
+    fields:
+      - {slug: form_0_1, type: text, required: false, label: "Organisation / Institution Name", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.1"}}
+      - {slug: form_0_2, type: text, required: false, label: "Respondent Name", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.2"}}
+      - {slug: form_0_3, type: text, required: false, label: "Position / Role", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.3"}}
+      - {slug: form_0_4, type: text, required: false, label: "Stakeholder Type", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.4"}}
+      - {slug: form_0_5, type: text, required: false, label: "City / Region", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.5"}}
+      - {slug: form_0_6, type: text, required: false, label: "Assessment Scope / Use Case", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.6"}}
+      - {slug: form_0_7, type: text, required: false, label: "Primary Operation", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.7"}}
+      - {slug: form_0_8, type: text, required: false, label: "Vehicle Segment Assessed", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.8"}}
+      - {slug: form_0_9, type: text, required: false, label: "Assessment Date", section: "0. Respondent & Case Info", aliases: {form_column_d: "0.9"}}
+      - {slug: form_1_2, type: text, required: false, label: "Consumer Readiness Level", section: "1. Existing Readiness", aliases: {form_column_d: "1.2"}}
+      - {slug: form_1_4, type: text, required: false, label: "City Readiness – Infrastructure Pillar", section: "1. Existing Readiness", aliases: {form_column_d: "1.4"}}
+      - {slug: form_1_5, type: text, required: false, label: "City Readiness – Policy & Support Pillar", section: "1. Existing Readiness", aliases: {form_column_d: "1.5"}}
+      - {slug: form_1_6, type: text, required: false, label: "City Readiness – Economic Scale Pillar", section: "1. Existing Readiness", aliases: {form_column_d: "1.6"}}
+      - {slug: form_1_7, type: text, required: false, label: "City Readiness – Aftermarket / Service Pillar", section: "1. Existing Readiness", aliases: {form_column_d: "1.7"}}
+      - {slug: form_2_5, type: text, required: false, label: "Preferred Financing Structure", section: "2. Financing Need", aliases: {form_column_d: "2.5"}}
+      - {slug: form_3_7, type: text, required: false, label: "Risk Allocation Preference", section: "3. Risk Profile", aliases: {form_column_d: "3.7"}}
+      - {slug: form_4_1, type: text, required: false, label: "Number of Vehicles in Scope", section: "4. Operation", aliases: {form_column_d: "4.1"}}
+      - {slug: form_4_2, type: text, required: false, label: "Operating Days per Year", section: "4. Operation", aliases: {form_column_d: "4.2"}}
+      - {slug: form_4_3, type: text, required: false, label: "Average Daily Mileage", section: "4. Operation", aliases: {form_column_d: "4.3"}}
+      - {slug: form_4_6, type: text, required: false, label: "Payload / Capacity Requirement", section: "4. Operation", aliases: {form_column_d: "4.6"}}
+      - {slug: form_4_7, type: text, required: false, label: "Duty Cycle", section: "4. Operation", aliases: {form_column_d: "4.7"}}
+      - {slug: form_4_8, type: text, required: false, label: "Operation Criticality", section: "4. Operation", aliases: {form_column_d: "4.8"}}
+      - {slug: form_6_10, type: text, required: false, label: "Charging Arrangement", section: "6. TCO EV", aliases: {form_column_d: "6.10"}}
+      - {slug: form_6_11, type: text, required: false, label: "Charging Access Adequacy", section: "6. TCO EV", aliases: {form_column_d: "6.11"}}
+      - {slug: form_7_1, type: text, required: false, label: "Green Taxonomy Alignment", section: "7. Sustainable Finance", aliases: {form_column_d: "7.1"}}
+      - {slug: form_7_2, type: text, required: false, label: "Green / Sustainable Financing Available", section: "7. Sustainable Finance", aliases: {form_column_d: "7.2"}}
+      - {slug: form_7_3, type: text, required: false, label: "Government Incentive Available", section: "7. Sustainable Finance", aliases: {form_column_d: "7.3"}}
+      - {slug: form_7_4, type: text, required: false, label: "Type of Government Support", section: "7. Sustainable Finance", aliases: {form_column_d: "7.4"}}
+      - {slug: form_7_5, type: text, required: false, label: "Other Fiscal Support", section: "7. Sustainable Finance", aliases: {form_column_d: "7.5"}}
+      - {slug: form_7_6, type: text, required: false, label: "Carbon / Environmental Benefit", section: "7. Sustainable Finance", aliases: {form_column_d: "7.6"}}
+      - {slug: form_7_7, type: text, required: false, label: "Public Procurement / Budget Constraint", section: "7. Sustainable Finance", aliases: {form_column_d: "7.7"}}
+      - {slug: form_8_6, type: text, required: false, label: "Typical Financing Tenor Available", section: "8. Financing Supply", aliases: {form_column_d: "8.6"}}
+      - {slug: form_8_7, type: text, required: false, label: "Maximum Acceptable Monthly Payment", section: "8. Financing Supply", aliases: {form_column_d: "8.7"}}
+      - {slug: form_8_8, type: text, required: false, label: "Preferred Upfront Payment", section: "8. Financing Supply", aliases: {form_column_d: "8.8"}}
+      - {slug: form_8_9, type: text, required: false, label: "Collateral Availability", section: "8. Financing Supply", aliases: {form_column_d: "8.9"}}
+      - {slug: form_8_10, type: text, required: false, label: "Credit / Budget Approval Constraint", section: "8. Financing Supply", aliases: {form_column_d: "8.10"}}
+      - {slug: form_9_1, type: text, required: false, label: "Cold Chain Temperature Requirement", section: "9. Use-Case", aliases: {form_column_d: "9.1"}}
+      - {slug: form_9_2, type: text, required: false, label: "Refrigeration Energy Requirement", section: "9. Use-Case", aliases: {form_column_d: "9.2"}}
+      - {slug: form_9_3, type: text, required: false, label: "Maximum Acceptable Downtime", section: "9. Use-Case", aliases: {form_column_d: "9.3"}}
+      - {slug: form_9_4, type: text, required: false, label: "Cargo Loss Exposure", section: "9. Use-Case", aliases: {form_column_d: "9.4"}}
+      - {slug: form_9_5, type: text, required: false, label: "Need for Temperature / Performance Guarantee", section: "9. Use-Case", aliases: {form_column_d: "9.5"}}
+      - {slug: form_10_1, type: text, required: false, label: "Government Entity Type", section: "10. Use-Case", aliases: {form_column_d: "10.1"}}
+      - {slug: form_10_2, type: text, required: false, label: "Procurement Model", section: "10. Use-Case", aliases: {form_column_d: "10.2"}}
+      - {slug: form_10_3, type: text, required: false, label: "Budget Source", section: "10. Use-Case", aliases: {form_column_d: "10.3"}}
+      - {slug: form_10_4, type: text, required: false, label: "Asset Ownership Requirement", section: "10. Use-Case", aliases: {form_column_d: "10.4"}}
+      - {slug: form_10_5, type: text, required: false, label: "Public Service Continuity Requirement", section: "10. Use-Case", aliases: {form_column_d: "10.5"}}
+      - {slug: form_10_6, type: text, required: false, label: "Land / Depot Available for Charging", section: "10. Use-Case", aliases: {form_column_d: "10.6"}}
+      - {slug: form_11_1, type: text, required: false, label: "Data Confidence Level", section: "11. Data Validation", aliases: {form_column_d: "11.1"}}
+      - {slug: form_11_2, type: text, required: false, label: "May results be used in aggregated analysis?", section: "11. Data Validation", aliases: {form_column_d: "11.2"}}
+      - {slug: form_11_3, type: text, required: false, label: "Additional Comments / Assumptions", section: "11. Data Validation", aliases: {form_column_d: "11.3"}}
