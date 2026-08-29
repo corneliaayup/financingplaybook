@@ -404,6 +404,7 @@ Every deliberate departure, with evidence.
 | 8 | Band labels | dashboard labels index 27.5/30 as "Moderate–High" | `LOW` per documented bands | 34–66 is MEDIUM, 0–33 is LOW. The dashboard's label contradicts its own band definition. |
 | 9 | Tie handling | `RANK()` yields two PRIMARY and no ALTERNATIVE | deterministic `library_priority` tie-break, tie surfaced | §9.1. |
 | 10 | Preferred Financing Structure (2.5) | collected, unused | displayed as context only | No documented role in the fit formula; §6.7. |
+| 11 | Investment Burden | dashboard shows 34 | documented formula, giving 50.0 on those inputs | 34 would require EV net CAPEX to be 1.66× diesel net; the same panel's payback (9.2 yrs × 36,000 km) implies an incremental CAPEX of ~1,156 Rp million against a diesel net of ~500 — an EV/diesel ratio of 2.3, which the formula maps to 0. The two dashboard numbers are mutually inconsistent; the formula value is kept. |
 
 ## 12. Configuration surface
 
