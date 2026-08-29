@@ -1,7 +1,12 @@
 config_version: "2026-01"
 bands: {low: [0, 33], medium: [34, 66], high: [67, 100]}
-financing_need: {slugs: [], weights: [0.25, 0.25, 0.25, 0.25]}
-risk_profile: {ownership_slug: rp_ownership, tolerance_slugs: [], weights: [0.5, 0.5]}
+financing_need:
+  slugs: [fn_external_need, fn_cashflow_constraint, fn_payment_preference, fn_support_requirement]
+  weights: [0.25, 0.25, 0.25, 0.25]
+risk_profile:
+  ownership_slug: rp_ownership
+  tolerance_slugs: [rp_technology, rp_battery, rp_residual, rp_maintenance, rp_downtime]
+  weights: [0.5, 0.5]
 economic_readiness:
   weights: {tco_competitiveness: 0.5, investment_burden: 0.25, market_access: 0.25}
 overall_fit:
