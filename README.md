@@ -92,7 +92,7 @@ bundled example case) and, separately, see the raw JSON the engine produces:
 streamlit run src/fpb/app.py
 ```
 
-Then in a second terminal:
+Then, in a second terminal:
 
 ```bash
 python -m fpb.cli score --config config --record tests/fixtures/workbook_case.json
@@ -173,16 +173,28 @@ You can now view your Streamlit app in your browser.
 Local URL: http://localhost:8501
 ```
 
-Open **http://localhost:8501** in your browser. The dashboard loads the bundled
-example (the golden `workbook_case` fixture). To run your own assessment, use the
-sidebar:
+Open **http://localhost:8501** in your browser. The app is an
+**input → scoring → output** platform; pick the data source in the sidebar:
 
-- **Example** — the bundled sample case (default).
+- **Questionnaire** (default) — an interactive, config-driven form built from
+  `config/questionnaire.yaml`. It mirrors the respondent workbook: every question
+  shows its reference number, the response guidance, and the workbook's answer
+  options (Likert 1–5, numeric-with-unit, dropdown, or text). Sections 0–11 render
+  in order with a per-section hint, and a **Petunjuk Pengisian** panel reproduces
+  the workbook's instructions. The form is pre-filled with the bundled example so it
+  is immediately usable. Press **Calculate Assessment** to run the engine and render
+  the full assessment detail (index cards, TCO analysis, scheme ranking,
+  recommendation). Identity fields (respondent name, city/region, use case, etc.)
+  flow straight into the dashboard header, filters, and Case Context panel.
+- **Example case** — the bundled sample (`workbook_case` fixture) rendered directly.
 - **Excel form** — upload the respondent questionnaire
   (`Financing_Playbook_Respondent_Questionnaire.xlsx`); question numbers in column
   A, answers in column D.
 - **JSON record** — upload a flat JSON file of field slugs to values (same shape as
   `tests/fixtures/workbook_case.json`).
+
+The Questionnaire form and the import flows share the same scoring engine and the
+same assessment-detail renderer, so identical inputs produce identical output.
 
 Validation issues are shown in an amber banner and the offending values are
 excluded, so incomplete panels are reported as `insufficient_inputs` rather than

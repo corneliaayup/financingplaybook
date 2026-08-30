@@ -1,0 +1,5 @@
+# Streamlit Community Cloud dependencies
+# Install the local src-layout package so `from fpb ...` imports work.
+-e .
+streamlit>=1.36
+pandas>=2
