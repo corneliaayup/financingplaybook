@@ -61,7 +61,7 @@ def test_questionnaire_input_drives_dashboard_scoring():
     assert "Assessment Detail" in html
     assert "PRIMARY RECOMMENDATION" in html
     # 1, 4, 5, 5 = 3.75 on the 1-5 scale, i.e. a 68.75 Need Index.
-    assert 'idx-value">69<span' in html
+    assert 'kpi-value green">69 <small>' in html
 
 
 def test_questionnaire_shows_workbook_options_and_instructions():
